@@ -1,0 +1,79 @@
+
+/*
+
+  Constants
+
+  - spaces
+    - global side space
+
+*/
+
+$side-space: 3.6rem;
+$vert-space: 3.6rem;
+
+
+/*
+
+  Colors
+
+  - colors
+
+*/
+
+/* colors */
+
+$primary-color: deeppink;
+
+$black: #1c1c1e;
+$vblack: #303132;
+$white: #FFFFFF;
+$lightgrey: #d1d1d6;
+$stalegrey: #778899;
+$grey: #8e8e93;
+$deepgrey: #636366;
+
+$blue: #0074D9;
+$pblue: #c5e9e7;
+
+/*
+
+  Mixins
+
+  - common
+
+*/
+
+/* common */
+@mixin transition($duration: 0.37s) {
+  transition:         all $duration cubic-bezier(0.645, 0.045, 0.355, 1);;
+  -webkit-transition: all $duration cubic-bezier(0.645, 0.045, 0.355, 1);;
+  -moz-transition:    all $duration cubic-bezier(0.645, 0.045, 0.355, 1);;
+  -ms-transition:     all $duration cubic-bezier(0.645, 0.045, 0.355, 1);;
+  -o-transition:      all $duration cubic-bezier(0.645, 0.045, 0.355, 1);;
+}
+
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+  @if $inset {
+    -webkit-box-shadow:inset $top $left $blur $color;
+    -moz-box-shadow:inset $top $left $blur $color;
+    box-shadow:inset $top $left $blur $color;
+  } @else {
+    -webkit-box-shadow: $top $left $blur $color;
+    -moz-box-shadow: $top $left $blur $color;
+    box-shadow: $top $left $blur $color;
+  }
+}
+
+@mixin sector {
+  padding: 1.2rem $side-space;
+  font-weight: 600;
+  line-height: 1.45em;
+}
+
+/*
+
+  Common usage
+
+  -
+
+*/
