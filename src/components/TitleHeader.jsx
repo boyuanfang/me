@@ -6,7 +6,7 @@ const TitleHeader = (props) => {
   const { title } = props;
 
   return (
-    <h1 className="title-header">
+    <h1>
       <Zoom cascade>
         {title}
       </Zoom>
