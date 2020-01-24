@@ -1,9 +1,9 @@
 {
-  "name": "myspace",
+  "name": "me",
   "version": "0.1.0",
-  "homepage": "https://Priceincoding.github.io",
   "private": true,
   "dependencies": {
+    "babel-plugin-styled-components": "^1.10.6",
     "bluebird": "^3.7.0",
     "gatsby": "^2.18.24",
     "gatsby-image": "^2.2.34",
@@ -13,6 +13,7 @@
     "gatsby-plugin-react-helmet": "^3.1.16",
     "gatsby-plugin-sass": "^2.1.27",
     "gatsby-plugin-sharp": "^2.3.5",
+    "gatsby-plugin-styled-components": "^3.1.18",
     "gatsby-source-filesystem": "^2.1.40",
     "gatsby-transformer-sharp": "^2.3.7",
     "gh-pages": "^2.1.1",
@@ -22,7 +23,8 @@
     "react-dom": "^16.12.0",
     "react-helmet": "^5.2.1",
     "react-reveal": "^1.2.2",
-    "react-visibility-sensor": "^5.1.1"
+    "react-visibility-sensor": "^5.1.1",
+    "styled-components": "^5.0.0"
   },
   "devDependencies": {
     "eslint": "^6.1.0",
@@ -44,7 +46,8 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "deploy-gh": "gatsby build && gh-pages -d public -b master"
   },
   "repository": {
     "type": "git",
