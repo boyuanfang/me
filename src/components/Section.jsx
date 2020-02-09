@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { Fade } from 'react-reveal';
+import sr from 'scrollreveal';
+
+import { srconfig } from '../config';
 
 import { media } from './utils/StyleUtils';
 
@@ -21,14 +23,14 @@ const Section = (props) => {
     header,
   } = props;
 
+  console.log(srconfig);
+
+  const ref = useRef(null);
+  useEffect(() => sr().reveal(ref.current, srconfig()));
+
   return (
-    <Wrapper className="container" header={header}>
-      <Fade
-        delay={REVEAL_DELAY}
-        duration={CASCADE_DURATION}
-      >
-        {children}
-      </Fade>
+    <Wrapper className="container" header={header} ref={ref}>
+      {children}
     </Wrapper>
   );
 };
