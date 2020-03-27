@@ -1,5 +1,4 @@
 import React from 'react';
-import { Zoom } from 'react-reveal';
 
 
 const TitleHeader = (props) => {
@@ -7,9 +6,7 @@ const TitleHeader = (props) => {
 
   return (
     <h1>
-      <Zoom cascade>
-        {title}
-      </Zoom>
+      {title}
     </h1>
   );
 };
