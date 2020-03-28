@@ -22,6 +22,18 @@
   "plugins": [
     "react"
   ],
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [
+          ["@components", "./src/components"],
+          ["@utils", "./src/utils"],
+          ["@config", "./src/config"]
+        ],
+        "extensions": [".ts", ".js", ".jsx", ".json"]
+      }
+    }
+  },
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "no-use-before-define": ["error", { "variables": false }],

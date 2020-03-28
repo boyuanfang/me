@@ -2,13 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import sr from 'scrollreveal';
 
-import { srconfig } from '../config';
+import { srconfig } from '@config';
 
-import { media } from './utils/StyleUtils';
-
-/* CONSTANTS */
-const REVEAL_DELAY = 250;
-const CASCADE_DURATION = 2000;
+import { media } from '@utils/StyleUtils';
 
 const Wrapper = styled.div`
   color: #1c1c1e;

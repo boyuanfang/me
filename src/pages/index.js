@@ -2,14 +2,13 @@ import React from 'react';
 import { Link, graphql } from 'gatsby';
 import VisibilitySensor from 'react-visibility-sensor';
 
-import Layout from '../components/Layout';
-import Section from '../components/Section';
+import Layout from '@components/Layout';
+import Section from '@components/Section';
 
 const HomePage = ({ location, data }) => (
   <Layout>
     <Section header>
-      <h1 dangerouslySetInnerHTML={{ __html: data.introduction.edges[0].node.frontmatter.title }} />
-      <h2 dangerouslySetInnerHTML={{ __html: data.introduction.edges[0].node.html }} />
+      <h1 dangerouslySetInnerHTML={{ __html: data.introduction.edges[0].node.frontmatter.secret }} />
 
     </Section>
     <Section>
@@ -33,7 +32,7 @@ export const pageQuery = graphql`
         node  {
           html
           frontmatter {
-            title
+            secret
           }
         }
       }
