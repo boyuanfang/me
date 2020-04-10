@@ -36,6 +36,7 @@
   },
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-one-expression-per-line": 0,
     "no-use-before-define": ["error", { "variables": false }],
     "react/prop-types": 0
   }

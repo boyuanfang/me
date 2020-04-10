@@ -1,5 +1,3 @@
 ---
-secret: "hi"
+secret: "secret!"
 ---
-
-html test
