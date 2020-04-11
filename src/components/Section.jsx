@@ -6,18 +6,35 @@ import { srconfig } from '@config';
 import { media } from '@utils/style';
 
 const Wrapper = styled.div`
-  color: #1c1c1e;
+  display: flex;
   ${(props) => (props.stretch ? 'min-height: 100vh;' : '')};
-  padding: 120px 0px;
-  ${media.MD`padding: 120px 40px;`};
-  ${(props) => props.style};
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 40px;
+  margin: 80px 0px;
+  ${media.MD`margin: 80px 20px;`};
+  border-radius: 48px;
+  transition: 0.35s;
+  :hover {
+    background: #f7fbfd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  :hover::after {
+    width: 48px;
+    background: gray;
+  }
   ::after {
+    transition: 0.35s;
     content: '';
     display: inline-block;
-    width: 24px;
+    width: 12px;
     height: 8px;
     border-radius: 12px;
-    background: grey;
+    background: transparent;
   }
 `;
 
@@ -34,7 +51,7 @@ const Section = (props) => {
 
   return (
     <Wrapper className="container" stretch={stretch} ref={ref}>
-      {children}
+      <Container>{children}</Container>
     </Wrapper>
   );
 };
