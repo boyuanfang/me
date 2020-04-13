@@ -6,6 +6,7 @@ import { srconfig } from '@config';
 import { media } from '@utils/style';
 
 const Wrapper = styled.div`
+  visibility: hidden;
   display: flex;
   ${(props) => (props.stretch ? 'min-height: 100vh;' : '')};
 `;
