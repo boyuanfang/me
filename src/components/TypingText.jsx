@@ -11,7 +11,7 @@ class TypingText extends React.Component {
       cursor: true,
     };
 
-    this.texts = ['Hello', '你好', 'こんにちは'];
+    this.texts = ['韩钰婷'];
     this.length = this.texts.length;
 
     setTimeout(this.start, 1000);
@@ -68,10 +68,10 @@ class TypingText extends React.Component {
   }
 
   render = () => (
-    <div>
+    <>
       {this.renderText()}
-      {this.renderCursor()}
-    </div>
+      {/* {this.renderCursor()} */}
+    </>
   )
 }
 

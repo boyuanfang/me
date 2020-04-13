@@ -1,4 +1,5 @@
 const _ = require('lodash');
+const path = require('path');
 
 /**
  * Implement Gatsby's Node APIs in this file.
@@ -25,4 +26,17 @@ exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
       value: _.get(parent, 'relativeDirectory'),
     });
   }
+};
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      alias: {
+        '@components': path.resolve(__dirname, 'src/components'),
+        '@utils': path.resolve(__dirname, 'src/utils'),
+        '@config': path.resolve(__dirname, 'src/config'),
+        '@assets': path.resolve(__dirname, 'src/assets'),
+      },
+    },
+  });
 };
