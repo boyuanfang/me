@@ -28,7 +28,20 @@ exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
   }
 };
 
-exports.onCreateWebpackConfig = ({ actions }) => {
+exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
+  if (stage === 'build-html') {
+    actions.setWebpackConfig({
+      module: {
+        rules: [
+          {
+            test: /scrollreveal/,
+            use: loaders.null(),
+          },
+        ],
+      },
+    });
+  }
+
   actions.setWebpackConfig({
     resolve: {
       alias: {
