@@ -9,8 +9,8 @@ const path = require('path');
 
 // You can delete this file if you're not using it
 
-exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
-  const { createNodeField } = boundActionCreators;
+exports.onCreateNode = ({ node, actions, getNode }) => {
+  const { createNodeField } = actions;
 
   if (_.get(node, 'internal.type') === 'MarkdownRemark') {
     // Get the parent node
