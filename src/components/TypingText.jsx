@@ -1,7 +1,6 @@
 import React from 'react';
 import { Promise } from 'bluebird';
 
-
 class TypingText extends React.Component {
   constructor(props) {
     super(props);

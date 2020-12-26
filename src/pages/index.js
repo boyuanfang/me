@@ -3,10 +3,11 @@ import { Link, graphql } from 'gatsby';
 import styled from 'styled-components';
 
 import { SafeHTML } from '@utils';
+import { media } from '@utils/style';
 
 import Layout from '@components/Layout';
 import Section from '@components/Section';
-import { media } from '@utils/style';
+import HighlightCard from '@components/HighlightCard';
 
 import { Instagram, Twitter, Github, Code, Steam } from '@assets/icons';
 
@@ -21,15 +22,17 @@ const STEAM_LINK = 'https://steamcommunity.com/id/priceishere/';
 
 /* Styled Components */
 const Title = styled.h1`
-  font-size: 72px;
+  font-size: 64px;
   ${media.MD`font-size:48px;`};
 `;
-const SubTitle = styled.h1`
+
+const Subtitle = styled.h1`
   color: ${(props) => props.theme.gray};
-  font-size: 36px;
+  font-size: 32px;
   ${media.MD`font-size:24px;`};
 `;
-const GradientName = styled.h1`
+
+const GradientParagraph = styled.p`
   width: fit-content;
   background: rgb(236, 125, 138);
   background: linear-gradient(
@@ -42,9 +45,11 @@ const GradientName = styled.h1`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 `;
+
 const HeaderBody = styled.div`
   flex: 1;
 `;
+
 const BottomRowContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -55,6 +60,7 @@ const BottomRowContainer = styled.div`
   justify-content: flex-end;
   align-items: center;
 `;
+
 const SocialIcon = styled.a`
   margin-left: 24px;
   ${media.MD`margin-top: 12px;`}
@@ -71,21 +77,20 @@ const SocialIcon = styled.a`
 
 /* Core Components */
 const HomePage = ({ location, data }) => {
-  const {
-    html,
-    frontmatter: {},
-  } = data.introduction.edges[0].node;
+  // const {
+  //   html,
+  //   frontmatter: {},
+  // } = data.introduction.edges[0].node;
+
+  const { amazonLogo, ucsdLogo } = data;
 
   return (
     <Layout>
       <Section stretch>
-        <Title>Welcome.</Title>
-        <SubTitle>
-          <p>
-            Thank you for your visit to my little home... I am still working on
-            it.
-          </p>
-        </SubTitle>
+        <Title>Boyuan Fang</Title>
+        <Subtitle>
+          <GradientParagraph>Software Development Engineer</GradientParagraph>
+        </Subtitle>
         <HeaderBody />
         <BottomRowContainer>
           <SocialIcon size={36} href={SOURCECODE_LINK}>
@@ -105,34 +110,33 @@ const HomePage = ({ location, data }) => {
           </SocialIcon>
         </BottomRowContainer>
       </Section>
-      <Section>
-        <h1 style={{ marginBottom: 0 }}>I am</h1>
-        <GradientName>Boyuan Fang</GradientName>
+
+      <Section stretch>
+        <h1>👨‍🦱 About me</h1>
         <p>
-          Born and raised in China, with
-          <span style={{ color: 'maroon' }}> brown</span> eyes and black hairs.
+          I'm Boyuan Fang, and I work as a Software Development Engineer. Here
+          is a brief overview of my career path.
         </p>
-        <p>
-          Studying for B.S. of Computer Science at University of California, San
-          Diego.
-        </p>
+        <HighlightCard
+          title="Software Development Engineer I"
+          subtitle="Upcoming"
+          date="Apr 2021 - future"
+          backgroundColor="#232f3e"
+          color="white"
+          imageData={amazonLogo}
+        />
+
+        <HighlightCard
+          title="Bachelor of Science"
+          subtitle="Computer Science Engineering"
+          date="Sep 2017 - Dec 2020"
+          imageData={ucsdLogo}
+        />
       </Section>
-      <Section>
-        <h1>As a programmer</h1>
-        <p>Yes, this will be my career, where I am professional at.</p>
+      <Section stretch>
+        <h1>Well.. It looks empty here..</h1>
+        <h2>I'm still working on the content, visit me again a bit later!</h2>
       </Section>
-      <Section>
-        <h1>As a gamer</h1>
-        <p>
-          Gaming is a creative way to spend time. It can be competitive,
-          relaxing, and aesthetic.
-        </p>
-      </Section>
-      {/* TODO photography section */}
-      {/* <Section>
-        <h1>I took photographs</h1>
-        <p>Art is one of my biggest passions.</p>
-      </Section> */}
     </Layout>
   );
 };
@@ -149,6 +153,22 @@ export const pageQuery = graphql`
           frontmatter {
             secret
           }
+        }
+      }
+    }
+    amazonLogo: file(relativePath: { eq: "logos/amazon_logo.png" }) {
+      childImageSharp {
+        # Specify the image processing specifications right in the query.
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    ucsdLogo: file(relativePath: { eq: "logos/ucsd_logo.png" }) {
+      childImageSharp {
+        # Specify the image processing specifications right in the query.
+        fluid {
+          ...GatsbyImageSharpFluid
         }
       }
     }
