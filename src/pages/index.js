@@ -1,15 +1,20 @@
 import React from 'react';
-import { Link, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
 import styled from 'styled-components';
 
-import { SafeHTML } from '@utils';
 import { media } from '@utils/style';
 
 import Layout from '@components/Layout';
 import Section from '@components/Section';
 import HighlightCard from '@components/HighlightCard';
+import TypingText from '@components/TypingText';
 
-import { Instagram, Twitter, Github, Code, Steam } from '@assets/icons';
+import {
+  Instagram, Twitter, Github, Code, Steam,
+} from '@assets/icons';
+
+import misuPng from '@assets/photos/misu.png';
+import californiaOne from '@assets/photos/california_1.jpg';
 
 /* Links */
 const SOURCECODE_LINK = 'https://github.com/boyuanfang/me';
@@ -21,24 +26,40 @@ const TWITTER_LINK = 'https://twitter.com/trashdrivr';
 const STEAM_LINK = 'https://steamcommunity.com/id/priceishere/';
 
 /* Styled Components */
-const Title = styled.h1`
-  font-size: 64px;
+const BigTitle = styled.h1`
+  color: ${(props) => (props.invert ? props.theme.white : props.theme.black)};
+  font-size: 56px;
   ${media.MD`font-size:48px;`};
 `;
 
-const Subtitle = styled.h1`
-  color: ${(props) => props.theme.gray};
-  font-size: 32px;
+const Title = styled.h1`
+  color: ${(props) => (props.invert ? props.theme.white : props.theme.black)};
+  font-size: 36px;
+  ${media.MD`font-size:48px;`};
+`;
+
+const Title2 = styled.h2`
+  color: ${(props) => (props.invert ? props.theme.white : props.theme.black)};
+  font-size: 28px;
   ${media.MD`font-size:24px;`};
 `;
 
-const GradientParagraph = styled.p`
+const Title3 = styled.h3`
+  color: ${(props) => (props.invert ? props.theme.white : props.theme.black)};
+  font-size: 20px;
+  ${media.MD`font-size:16px;`};
+`;
+
+const P = styled.p`
+  color: ${(props) => (props.invert ? props.theme.white : props.theme.black)};
+`;
+
+const GradientSpan = styled.span`
   width: fit-content;
-  background: rgb(236, 125, 138);
   background: linear-gradient(
-    90deg,
-    rgba(236, 125, 138, 1) 0%,
-    rgba(148, 187, 233, 1) 100%
+    120deg,
+    rgba(242, 63, 84, 1) 0%,
+    rgba(175, 75, 245, 1) 100%
   );
   background-clip: text;
   color: transparent;
@@ -68,11 +89,30 @@ const SocialIcon = styled.a`
   ${(props) => media.MD`width: ${props.size / 1.2}px;`}
   /* height: ${(props) => props.size}px; */
   height: fit-content;
-  color: ${(props) => props.theme.black};
+  color: ${(props) => props.theme.white};
   transition: 0.5s;
   :hover {
     transform: translate3d(0, -6px, 0);
   }
+`;
+
+const CenteredMisuDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  align-items: center;
+`;
+
+const Misu = styled.span`
+  color: rgb(109, 73, 62);
+`;
+
+const MisuImg = styled.img`
+  width: 100px;
+  margin: 24px 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 /* Core Components */
@@ -82,15 +122,16 @@ const HomePage = ({ location, data }) => {
   //   frontmatter: {},
   // } = data.introduction.edges[0].node;
 
-  const { amazonLogo, ucsdLogo } = data;
+  const {
+    teslaWordmark, amazonLogo, ucsdLogo,
+  } = data;
 
   return (
     <Layout>
-      <Section stretch>
-        <Title>Boyuan Fang</Title>
-        <Subtitle>
-          <GradientParagraph>Software Development Engineer</GradientParagraph>
-        </Subtitle>
+      <Section stretch backgroundImage={californiaOne}>
+        <BigTitle invert>
+          <TypingText texts={['Boyuan Fang', '方 博远', 'fāng bó yuǎn', '方	博遠', 'ㄈㄤ ㄅㄛˊ ㄩㄢˇ']} />
+        </BigTitle>
         <HeaderBody />
         <BottomRowContainer>
           <SocialIcon size={36} href={SOURCECODE_LINK}>
@@ -111,16 +152,23 @@ const HomePage = ({ location, data }) => {
         </BottomRowContainer>
       </Section>
 
-      <Section stretch>
-        <h1>👨‍🦱 About me</h1>
-        <p>
-          I'm Boyuan Fang, and I work as a Software Development Engineer. Here
-          is a brief overview of my career path.
-        </p>
+      <Section stretch dark>
+        <Title invert>About</Title>
+        <P invert>I&apos;m a Software Engineer; I build stuffs with code.</P>
+
         <HighlightCard
-          title="Software Development Engineer I"
-          subtitle="Upcoming"
-          date="Apr 2021 - future"
+          title="Software Development Engineer"
+          subtitle="Factory Software @ GFTX"
+          date="Apr 2023 and onwards"
+          backgroundColor="#DE2936"
+          color="#fafafa"
+          imageData={teslaWordmark}
+        />
+
+        <HighlightCard
+          title="Software Development Engineer"
+          subtitle="Amazon Halo & Alexa Smarthome"
+          date="Apr 2021 - Jan 2023"
           backgroundColor="#232f3e"
           color="white"
           imageData={amazonLogo}
@@ -132,10 +180,23 @@ const HomePage = ({ location, data }) => {
           date="Sep 2017 - Dec 2020"
           imageData={ucsdLogo}
         />
+
+        <P invert> Also feel free to peek into my life for a collection of hobbies 👀</P>
+        <Title>⛷️🏎️📷🚴‍♂️🐕‍🦺🎮💻🧑‍🍳🔪🏖️🎞️🪛📺🎵</Title>
       </Section>
       <Section stretch>
-        <h1>Well.. It looks empty here..</h1>
-        <h2>I'm still working on the content, visit me again a bit later!</h2>
+        <CenteredMisuDiv>
+          <Title2>
+            <GradientSpan>
+              Woof! You found
+            </GradientSpan>
+            <Misu> Misu!</Misu>
+          </Title2>
+          <MisuImg src={misuPng} alt="misu.png (didnt load?)" />
+          <Title3>
+            <Misu>Misu</Misu> wants you to come back soon!
+          </Title3>
+        </CenteredMisuDiv>
       </Section>
     </Layout>
   );
@@ -156,9 +217,15 @@ export const pageQuery = graphql`
         }
       }
     }
+    teslaWordmark: file(relativePath: { eq: "logos/tesla_wordmark.png" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
     amazonLogo: file(relativePath: { eq: "logos/amazon_logo.png" }) {
       childImageSharp {
-        # Specify the image processing specifications right in the query.
         fluid {
           ...GatsbyImageSharpFluid
         }
@@ -166,7 +233,6 @@ export const pageQuery = graphql`
     }
     ucsdLogo: file(relativePath: { eq: "logos/ucsd_logo.png" }) {
       childImageSharp {
-        # Specify the image processing specifications right in the query.
         fluid {
           ...GatsbyImageSharpFluid
         }
