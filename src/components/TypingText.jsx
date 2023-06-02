@@ -1,5 +1,27 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Promise } from 'bluebird';
+
+const delayBeforeTyping = 500;
+const typingInterval = 45;
+const delayBeforeBackSpace = 3000;
+const backspaceInterval = 25;
+
+const Cursor = styled.span`
+  display: inline-block;
+  opacity: 1;
+  animation: blink 1s cubic-bezier(1, 0, 0, 1) infinite;
+  font-size: 24px;
+  margin-left: 24px;
+
+  @keyframes blink {
+    0% { opacity: 1; }
+    35% { opacity: 1; }
+    50% { opacity: 0; }
+    65% { opacity: 1; }
+    100% {opacity: 1; }
+  };
+`;
 
 class TypingText extends React.Component {
   constructor(props) {
@@ -7,10 +29,9 @@ class TypingText extends React.Component {
 
     this.state = {
       text: '',
-      cursor: true,
     };
 
-    this.texts = ['韩钰婷'];
+    this.texts = props.texts;
     this.length = this.texts.length;
 
     setTimeout(this.start, 1000);
@@ -24,12 +45,10 @@ class TypingText extends React.Component {
     const text = this.texts[index];
     if (i <= text.length) {
       this.setText(text.slice(0, i));
-      await Promise.delay(100);
+      await Promise.delay(typingInterval);
       this.write(index, i + 1);
     } else {
-      this.setCursor(false);
-      await Promise.delay(2000);
-      this.setCursor(true);
+      await Promise.delay(delayBeforeBackSpace);
       this.backspace(index, i);
     }
   }
@@ -38,21 +57,18 @@ class TypingText extends React.Component {
     const text = this.texts[index];
     if (i >= 0) {
       this.setText(text.slice(0, i));
-      await Promise.delay(50);
+      await Promise.delay(backspaceInterval);
       this.backspace(index, i - 1);
     } else {
-      await Promise.delay(1500);
+      await Promise.delay(delayBeforeTyping);
       this.write((index + 1) % this.length, 0);
     }
   }
 
   setText = (text) => { this.setState({ text }); }
 
-  setCursor = (cursor) => { this.setState({ cursor }); }
-
   renderCursor = () => {
-    const { cursor } = this.state;
-    return <span className={cursor ? 'typing-cursor' : 'typing-cursor-off'}>┃</span>;
+    return <Cursor>■</Cursor>;
   }
 
   renderText = () => {
@@ -60,7 +76,6 @@ class TypingText extends React.Component {
 
     return (
       <span className="typing-text">
-        {/* {this.texts[index]} */}
         {text}
       </span>
     );
@@ -69,7 +84,7 @@ class TypingText extends React.Component {
   render = () => (
     <>
       {this.renderText()}
-      {/* {this.renderCursor()} */}
+      {this.renderCursor()}
     </>
   )
 }

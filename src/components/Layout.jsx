@@ -9,8 +9,8 @@ import './css/bootstrap-reboot.css';
 
 const GlobalStyle = createGlobalStyle`
   body {
-    font-family: "Nunito Sans", sans-serif;
-    font-size: 20px;
+    font-family: "SF Pro", sans-serif;
+    font-size: 16px;
   }
 `;
 
@@ -18,7 +18,7 @@ const Footer = styled.div`
   display: flex;
   flex-direction: column;
   color: ${(props) => props.theme.black};
-  font-size: 14px;
+  font-size: 12px;
   align-items: center;
 `;
 
@@ -30,14 +30,13 @@ const Layout = (props) => {
   } = props;
 
   return (
-    <div className="container">
+    <div>
       <GlobalStyle />
       <ThemeProvider theme={defaultTheme}>
         {children}
         <SRWrapper>
           <Footer>
-            <p>Made with 💖 and more content WIP </p>
-            <p>Boyuan Fang @ 2020</p>
+            <p>2023</p>
           </Footer>
         </SRWrapper>
       </ThemeProvider>
